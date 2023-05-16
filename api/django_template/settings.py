@@ -1,5 +1,7 @@
 from pathlib import Path
 import environ
+import os
+import psycopg2
 
 # Environ setup
 env = environ.Env(DEBUG=(bool, False))
@@ -63,9 +65,16 @@ WSGI_APPLICATION = 'django_template.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": env("MAIN_DB_ENGINE"),
+        "NAME": env("MAIN_DB_NAME"),
+        "USER": env("MAIN_DB_USER"),
+        "PASSWORD": env("MAIN_DB_PASSWORD"),
+        "HOST": env("MAIN_DB_HOST"),
+        "PORT": env("MAIN_DB_PORT"),
+        "OPTIONS": {
+            "isolation_level": psycopg2.extensions.ISOLATION_LEVEL_SERIALIZABLE,
+        },
     }
 }
 
@@ -104,7 +113,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
