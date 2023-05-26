@@ -8,6 +8,10 @@ django = "*"
 django-environ = "*"
 gunicorn = "*"
 psycopg2 = "*"
+celery = "*"
+django-celery-beat = "*"
+django-celery-results = "*"
+tzdata = "*"
 
 [dev-packages]
 

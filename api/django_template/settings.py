@@ -1,7 +1,8 @@
+from datetime import timedelta
 from pathlib import Path
+import psycopg2
 import environ
 import os
-import psycopg2
 
 # Environ setup
 env = environ.Env(DEBUG=(bool, False))
@@ -28,6 +29,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "django.contrib.postgres",
+    "django_celery_results",
+    "django_celery_beat",
+    "core.apps.CoreConfig"
 ]
 
 MIDDLEWARE = [
@@ -78,6 +83,14 @@ DATABASES = {
     }
 }
 
+# Celery Configuration Options
+CELERY_BROKER_URL = env("CELERY_BROKER_URL")
+CELERY_RESULT_BACKEND = "django-db"
+CELERY_CACHE_BACKEND = "django-cache"
+CELERY_TIMEZONE = "Europe/Istanbul"
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_RESULT_EXPIRES = timedelta(days=60)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

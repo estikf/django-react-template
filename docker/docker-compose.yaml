@@ -9,6 +9,7 @@ services:
     restart: unless-stopped
     volumes:
       - ../api:/code
+
   nginx:
     image: nginx:stable-alpine
     container_name: nginx
@@ -23,6 +24,7 @@ services:
       - ../api/static:/api/code/static
     depends_on:
       - api
+
   postgres:
     image: postgres:13.2-alpine
     container_name: postgres
@@ -35,6 +37,31 @@ services:
     restart: unless-stopped
     volumes:
       - pgdata:/var/lib/postgresql/data
-  
+
+  rabbitmq:
+    image: rabbitmq:3.11-management
+    container_name: rabbitmq
+    hostname: rabbit-dev
+    restart: unless-stopped
+    ports:
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+    volumes:
+      - rabbitmq:/var/lib/rabbitmq/
+
+  celery:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile.celery
+    container_name: celery
+    restart: unless-stopped
+    volumes:
+      - ../api:/code
+    depends_on:
+      - rabbitmq
+
 volumes:
   pgdata:
+  rabbitmq:
