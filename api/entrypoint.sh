@@ -1,7 +1,5 @@
 #!/bin/bash
 python manage.py collectstatic --noinput
-python manage.py makemessages --all
-python manage.py compilemessages
 until python manage.py migrate; do
     echo "Waiting for db to be ready..."
     sleep 1
