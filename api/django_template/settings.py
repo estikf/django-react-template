@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 from datetime import timedelta
 from pathlib import Path
 import psycopg2
@@ -32,7 +33,8 @@ INSTALLED_APPS = [
     "django.contrib.postgres",
     "django_celery_results",
     "django_celery_beat",
-    "core.apps.CoreConfig"
+    "rest_framework",
+    "rest_framework.authtoken"
 ]
 
 MIDDLEWARE = [
@@ -121,6 +123,10 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+LANGUAGES = (
+    ("en", _("English")),
+)
 
 
 # Static files (CSS, JavaScript, Images)

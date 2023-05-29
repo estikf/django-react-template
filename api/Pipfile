@@ -12,6 +12,7 @@ celery = "*"
 django-celery-beat = "*"
 django-celery-results = "*"
 tzdata = "*"
+djangorestframework = "*"
 
 [dev-packages]
 
