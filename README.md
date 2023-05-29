@@ -37,7 +37,7 @@ http://localhost/admin
 
 Visit your browser for api endpoints
 ```
-http://localhost/admin
+http://localhost/api
 ```
 
 ## Usage/Examples
