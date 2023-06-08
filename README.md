@@ -47,7 +47,6 @@ docker exec -it api python manage.py createsuperuser
 
 Create a new django app
 ```python
-cd dockerized-django/api
-python manage.py startapp <your-app-name>
+docker exec -it api python manage.py startapp <your-app-name>
 ```
 Start building your api endpoints!
