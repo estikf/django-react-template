@@ -374,12 +374,4 @@ fabric.properties
 ### Stellar ###
 stellar.yaml
 
-### vscode ###
-.vscode/*
-# !.vscode/settings.json
-# !.vscode/tasks.json
-# !.vscode/launch.json
-# !.vscode/extensions.json
-# *.code-workspace
-
 # End of https://www.toptal.com/developers/gitignore/api/django,python,linux,macos,vscode,pycharm

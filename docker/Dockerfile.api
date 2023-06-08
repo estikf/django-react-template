@@ -9,10 +9,8 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 WORKDIR /code
 COPY ./api /code
 RUN apt update && \
-	apt install libpq-dev python3-dev g++ unixodbc-dev gnupg2 curl gettext fonts-freefont-ttf -y dos2unix -y && \
+	apt install libpq-dev python3-dev g++ unixodbc-dev gnupg2 curl gettext fonts-freefont-ttf -y && \
     pipenv install --system --deploy
-
-RUN dos2unix ./entrypoint.sh && apt-get --purge remove -y dos2unix && rm -rf /var/lib/apt/lists/*
 
 EXPOSE 8000
 
