@@ -2,23 +2,20 @@ from django.utils.translation import gettext_lazy as _
 from datetime import timedelta
 from pathlib import Path
 import psycopg2
-import environ
 import os
 
 # Environ setup
-env = environ.Env(DEBUG=(bool, False))
-environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env("DEBUG")
+DEBUG = os.environ.get("DEBUG")
 
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(",")
 
 
 # Application definition
@@ -73,12 +70,12 @@ WSGI_APPLICATION = 'django_template.wsgi.application'
 
 DATABASES = {
     "default": {
-        "ENGINE": env("MAIN_DB_ENGINE"),
-        "NAME": env("MAIN_DB_NAME"),
-        "USER": env("MAIN_DB_USER"),
-        "PASSWORD": env("MAIN_DB_PASSWORD"),
-        "HOST": env("MAIN_DB_HOST"),
-        "PORT": env("MAIN_DB_PORT"),
+        "ENGINE": os.environ.get("MAIN_DB_ENGINE"),
+        "NAME": os.environ.get("MAIN_DB_NAME"),
+        "USER": os.environ.get("MAIN_DB_USER"),
+        "PASSWORD": os.environ.get("MAIN_DB_PASSWORD"),
+        "HOST": os.environ.get("MAIN_DB_HOST"),
+        "PORT": os.environ.get("MAIN_DB_PORT"),
         "OPTIONS": {
             "isolation_level": psycopg2.extensions.ISOLATION_LEVEL_SERIALIZABLE,
         },
@@ -86,7 +83,7 @@ DATABASES = {
 }
 
 # Celery Configuration Options
-CELERY_BROKER_URL = env("CELERY_BROKER_URL")
+CELERY_BROKER_URL = os.environ.get("CELERY_BROKER_URL")
 CELERY_RESULT_BACKEND = "django-db"
 CELERY_CACHE_BACKEND = "django-cache"
 CELERY_TIMEZONE = "Europe/Istanbul"
