@@ -14,7 +14,7 @@ https://docs.docker.com/engine/install/
 
 https://docs.docker.com/compose/install/
     
-## Starting the project
+## Running the project
 
 Clone the repository
 
