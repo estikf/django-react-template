@@ -21,16 +21,14 @@ Clone the repository
 ```
 git clone https://github.com/estikf/dockerized-django.git
 ```
+Create an **.env** file similar to **env.txt** at api/django_template folder for Django settings
+
 Start using docker compose
 ```
 cd dockerized-django/docker
 docker compose up -d
 ```
 
-Create a super user
-```
-docker exec -it api python manage.py createsuperuser
-```
 Visit your browser for admin panel
 ```
 http://localhost/admin
@@ -42,10 +40,13 @@ http://localhost/api
 ```
 
 ## Usage/Examples
+Create a super user
+```
+docker exec -it api python manage.py createsuperuser
+```
+
 Create a new django app
 ```python
-cd dockerized-django/api
-python manage.py startapp <your-app-name>
+docker exec -it api python manage.py startapp <your-app-name>
 ```
 Start building your api endpoints!
-
