@@ -9,6 +9,8 @@ services:
     restart: unless-stopped
     volumes:
       - ../api:/code
+    env_file:
+      - ../.env
 
   nginx:
     image: nginx:stable-alpine
@@ -62,6 +64,8 @@ services:
       - ../api:/code
     depends_on:
       - rabbitmq
+    env_file:
+      - ../.env
 
 volumes:
   pgdata:
