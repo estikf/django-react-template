@@ -8,7 +8,7 @@ RUN pipenv --python 3.11
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 WORKDIR /code
-COPY ./api /code
+COPY . /code
 RUN apt update && \
 	apt install libpq-dev python3-dev g++ unixodbc-dev gnupg2 -y && \
     pipenv install --system --deploy

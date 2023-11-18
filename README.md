@@ -1,5 +1,5 @@
 
-# Dockerized Django, Postgres, Celery, Nginx and RabbitMQ
+# Dockerized Django, Postgres, Celery, Nginx and RabbitMQ!
 
 This is a template project that can be used to start a new django project easily.
 
@@ -25,7 +25,7 @@ Create an **.env** file similar to **env.txt** at root directory
 
 Start using docker compose
 ```
-cd dockerized-django/docker
+cd dockerized-django
 docker compose up -d
 ```
 
