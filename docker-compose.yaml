@@ -1,16 +1,16 @@
-version: "3.8"
+version: "1.0"
 
 services:
   api:
     build:
-      context: ../
-      dockerfile: docker/Dockerfile.api
+      context: ./
+      dockerfile: ./docker/Dockerfile.api
     container_name: api
     restart: unless-stopped
     volumes:
-      - ../api:/code
+      - ./api:/code
     env_file:
-      - ../.env
+      - ./.env
 
   nginx:
     image: nginx:stable-alpine
@@ -20,10 +20,10 @@ services:
     restart: unless-stopped
     volumes:
       # Nginx conf
-      - ./conf/nginx/conf.d:/etc/nginx/conf.d
-      - ./conf/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/conf/nginx/conf.d:/etc/nginx/conf.d
+      - ./docker/conf/nginx/nginx.conf:/etc/nginx/nginx.conf
       # Static files locations
-      - ../api/static:/api/code/static
+      - ./api/static:/api/code/static
     depends_on:
       - api
 
@@ -56,16 +56,16 @@ services:
 
   celery:
     build:
-      context: ../
+      context: ./
       dockerfile: docker/Dockerfile.celery
     container_name: celery
     restart: unless-stopped
     volumes:
-      - ../api:/code
+      - ./api:/code
     depends_on:
       - rabbitmq
     env_file:
-      - ../.env
+      - ./.env
 
 volumes:
   pgdata:
