@@ -3,7 +3,12 @@
 
 This is a template project that can be used to start a new django project easily.
 
-
+## Tech Stack
+- Django
+- Celery
+- PostgreSQL
+- RabbitMQ
+- Nginx
 
 ## Requirements
 You need to have **Docker** engine and **Docker Compose** to run this project.
