@@ -10,7 +10,7 @@ services:
     volumes:
       - ./api:/code
     env_file:
-      - ./.env
+      - ./api/.env
 
   nginx:
     image: nginx:stable-alpine
@@ -65,7 +65,7 @@ services:
     depends_on:
       - rabbitmq
     env_file:
-      - ./.env
+      - ./api/.env
 
 volumes:
   pgdata:

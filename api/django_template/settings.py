@@ -1,22 +1,22 @@
 from django.utils.translation import gettext_lazy as _
 from datetime import timedelta
 from pathlib import Path
+from dotenv import load_dotenv
 import psycopg2
 import os
 
-# Environ setup
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv()
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG")
+DEBUG = os.getenv("DEBUG")
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(",")
-CSRF_TRUSTED_ORIGINS = os.environ.get("CSRF_TRUSTED_ORIGINS").split(",")
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(",")
+CSRF_TRUSTED_ORIGINS = os.getenv("CSRF_TRUSTED_ORIGINS").split(",")
 
 # Application definition
 INSTALLED_APPS = [
@@ -69,12 +69,12 @@ WSGI_APPLICATION = 'django_template.wsgi.application'
 
 DATABASES = {
     "default": {
-        "ENGINE": os.environ.get("MAIN_DB_ENGINE"),
-        "NAME": os.environ.get("MAIN_DB_NAME"),
-        "USER": os.environ.get("MAIN_DB_USER"),
-        "PASSWORD": os.environ.get("MAIN_DB_PASSWORD"),
-        "HOST": os.environ.get("MAIN_DB_HOST"),
-        "PORT": os.environ.get("MAIN_DB_PORT"),
+        "ENGINE": os.getenv("MAIN_DB_ENGINE"),
+        "NAME": os.getenv("MAIN_DB_NAME"),
+        "USER": os.getenv("MAIN_DB_USER"),
+        "PASSWORD": os.getenv("MAIN_DB_PASSWORD"),
+        "HOST": os.getenv("MAIN_DB_HOST"),
+        "PORT": os.getenv("MAIN_DB_PORT"),
         "OPTIONS": {
             "isolation_level": psycopg2.extensions.ISOLATION_LEVEL_SERIALIZABLE,
         },
@@ -82,7 +82,7 @@ DATABASES = {
 }
 
 # Celery Configuration Options
-CELERY_BROKER_URL = os.environ.get("CELERY_BROKER_URL")
+CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
 CELERY_RESULT_BACKEND = "django-db"
 CELERY_CACHE_BACKEND = "django-cache"
 CELERY_TIMEZONE = "Europe/Istanbul"
