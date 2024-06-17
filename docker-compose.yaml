@@ -35,7 +35,7 @@ services:
     environment:
       POSTGRE_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: django
+      POSTGRES_DB: django_template
     restart: unless-stopped
     volumes:
       - pgdata:/var/lib/postgresql/data
