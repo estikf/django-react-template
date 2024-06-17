@@ -26,7 +26,7 @@ Clone the repository
 ```
 git clone https://github.com/estikf/dockerized-django.git
 ```
-Create an **.env** file similar to **env.txt** at root directory
+Create an **.env** file similar to **env.txt** at **api** directory
 
 Start using docker compose
 ```
